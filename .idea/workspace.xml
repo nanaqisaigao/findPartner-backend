@@ -4,37 +4,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d280794a-cea4-4dea-a05d-771c80f20b1c" name="Changes" comment="打包完成">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/mybatisx/templates.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/UseCenterManageBackApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/UseCenterManageBackApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/common/BaseResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/common/BaseResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/common/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/common/ErrorCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/common/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/common/RedisConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/common/ResultUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/common/ResultUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/constant/UserConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/constant/UserConstant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/exception/BusinessException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/exception/BusinessException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/exception/GlobalHttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/exception/GlobalHttpHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/model/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/model/domain/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/model/request/UserLoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/model/request/UserLoginRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/model/request/UserRegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/model/request/UserRegisterRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/service/impl/UserServiceImpl.java" afterDir="false" />
+    <list default="true" id="d280794a-cea4-4dea-a05d-771c80f20b1c" name="Changes" comment="把之前项目的名称，目录都改成当前项目">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/findPartnerbackend/mapper/TagMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/findPartnerbackend/model/domain/Tag.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/findPartnerbackend/service/TagService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/findPartnerbackend/service/impl/TagServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/TagMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/findPartnerbackend/UseCenterManageBackApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/findPartnerbackend/findPartnerBackendApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/findPartnerbackend/model/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/findPartnerbackend/model/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/findPartnerbackend/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/findPartnerbackend/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/findPartnerbackend/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/findPartnerbackend/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/useCenterManageback/SampleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/useCenterManageback/SampleTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/useCenterManageback/UseCenterManageBackApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/useCenterManageback/UseCenterManageBackApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/useCenterManageback/service/RedisTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/useCenterManageback/service/RedisTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/useCenterManageback/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/useCenterManageback/service/UserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/findPartnerbackend/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/findPartnerbackend/service/UserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/useCenterManageback/UseCenterManageBackApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/useCenterManageback/common/BaseResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/useCenterManageback/common/ErrorCode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/useCenterManageback/common/RedisConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/useCenterManageback/common/ResultUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/useCenterManageback/constant/UserConstant.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/useCenterManageback/controller/UserController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/useCenterManageback/exception/BusinessException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/useCenterManageback/exception/GlobalHttpHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/useCenterManageback/mapper/UserMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/useCenterManageback/model/domain/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/useCenterManageback/model/request/UserLoginRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/useCenterManageback/model/request/UserRegisterRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/useCenterManageback/service/UserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/useCenterManageback/service/impl/UserServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/useCenterManageback/SampleTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/useCenterManageback/UseCenterManageBackApplicationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/useCenterManageback/service/RedisTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/useCenterManageback/service/UserServiceTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/useCenterManage-back-0.0.1-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/useCenterManage-back-0.0.1-SNAPSHOT.jar.original" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,53 +98,61 @@
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="2gpHVkuP78xj0suOO1MG10OCvl8" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;HTTP Request.All in rest-api_1.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.rest-api_1 | #1.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.rest-api_1 | #2.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.rest-api_1 | #3.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RedisTest.test.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RedisTest.testString.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SampleTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SampleTest.testSelect.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceTest.testAddUser.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceTest.userRegister.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.useCenterManage-back [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.useCenterManage-back [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.useCenterManage-back [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.useCenterManage-back [package].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.UseCenterManageBackApplication.executor&quot;: &quot;Debug&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/project/GitHub/findPartner-backend&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.29655173&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;database.query.execution&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "HTTP Request.All in rest-api_1.executor": "Run",
+    "HTTP Request.rest-api_1 | #1.executor": "Run",
+    "HTTP Request.rest-api_1 | #2.executor": "Run",
+    "HTTP Request.rest-api_1 | #3.executor": "Run",
+    "JUnit.RedisTest.test.executor": "Run",
+    "JUnit.RedisTest.testString.executor": "Run",
+    "JUnit.SampleTest.executor": "Run",
+    "JUnit.SampleTest.testSelect.executor": "Run",
+    "JUnit.UserServiceTest.testAddUser.executor": "Run",
+    "JUnit.UserServiceTest.testSearchUserByTags.executor": "Debug",
+    "JUnit.UserServiceTest.userRegister.executor": "Run",
+    "Maven.useCenterManage-back [clean].executor": "Run",
+    "Maven.useCenterManage-back [compile].executor": "Run",
+    "Maven.useCenterManage-back [install].executor": "Run",
+    "Maven.useCenterManage-back [package].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.UseCenterManageBackApplication.executor": "Debug",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/project/GitHub/findPartner-backend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Global Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.29655173",
+    "settings.editor.selected.configurable": "MavenSettings",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -145,13 +161,14 @@
       <recent name="com.example.useCenterManageback.service" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.findPartnerbackend.service" />
+      <recent name="com.example.findPartnerbackend.service.impl" />
+      <recent name="com.example.findPartnerbackend.mapper" />
+      <recent name="com.example.findPartnerbackend.model.domain" />
       <recent name="com.example.useCenterManageback.model.request" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.RedisTest.test">
-    <configuration name="rest-api_1 | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api_1.http" requestIdentifier="#1" runType="Run single request">
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="JUnit.UserServiceTest.testSearchUserByTags">
     <configuration name="RedisTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="findPartner-backend" />
       <extension name="coverage">
@@ -179,6 +196,22 @@
       <option name="PACKAGE_NAME" value="com.example.useCenterManageback.service" />
       <option name="MAIN_CLASS_NAME" value="com.example.useCenterManageback.service.RedisTest" />
       <option name="METHOD_NAME" value="testString" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest.testSearchUserByTags" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="findPartner-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.findPartnerbackend.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.findPartnerbackend.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.findPartnerbackend.service.UserServiceTest" />
+      <option name="METHOD_NAME" value="testSearchUserByTags" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -222,11 +255,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UserServiceTest.testSearchUserByTags" />
         <item itemvalue="JUnit.RedisTest.test" />
         <item itemvalue="JUnit.RedisTest.testString" />
         <item itemvalue="Spring Boot.UseCenterManageBackApplication" />
         <item itemvalue="JUnit.UserServiceTest.userRegister" />
-        <item itemvalue="HTTP Request.rest-api_1 | #1" />
       </list>
     </recent_temporary>
   </component>
@@ -261,7 +294,13 @@
       <workItem from="1717396062966" duration="22664000" />
       <workItem from="1717571994105" duration="749000" />
       <workItem from="1717573367625" duration="17265000" />
-      <workItem from="1717661621856" duration="549000" />
+      <workItem from="1717661621856" duration="8454000" />
+      <workItem from="1717676533752" duration="74000" />
+      <workItem from="1717676615983" duration="26000" />
+      <workItem from="1717678272127" duration="18000" />
+      <workItem from="1717678297823" duration="309000" />
+      <workItem from="1717680329616" duration="170000" />
+      <workItem from="1717680506078" duration="274000" />
     </task>
     <task id="LOCAL-00001" summary="登录接口写完">
       <option name="closed" value="true" />
@@ -311,7 +350,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717414790210</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="把之前项目的名称，目录都改成当前项目">
+      <option name="closed" value="true" />
+      <created>1717662352911</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1717662352911</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -329,6 +376,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="注册改了一下" />
     <MESSAGE value="登录接口写完" />
     <MESSAGE value="删除接口有code 400的bug" />
@@ -336,7 +384,8 @@
     <MESSAGE value="注册增加了可以添加留言，基础功能已经实现完成" />
     <MESSAGE value="增加了统一的返回值，全局异常统一抛出，异常全局处理（设定了前端显示的异常值）" />
     <MESSAGE value="打包完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="打包完成" />
+    <MESSAGE value="把之前项目的名称，目录都改成当前项目" />
+    <option name="LAST_COMMIT_MESSAGE" value="把之前项目的名称，目录都改成当前项目" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

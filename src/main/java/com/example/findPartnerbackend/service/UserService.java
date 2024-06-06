@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 /**
 * @author 28044
@@ -33,4 +34,7 @@ public interface UserService extends IService<User> {
     User getSafetyUser(User user);
 
     int userLogout(HttpServletRequest request);
+
+
+    List<User> searchUsersByTags(List<String> tagNameList);
 }

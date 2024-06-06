@@ -89,6 +89,10 @@ public class User implements Serializable {
      * 备注
      */
     private String comment;
+    /**
+     * 用户标签 是JSON
+     */
+    private String tags;
 
 
     @TableField(exist = false)

@@ -3,6 +3,7 @@ package com.example.findPartnerbackend.service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.findPartnerbackend.mapper.UserMapper;
 import com.example.findPartnerbackend.model.domain.User;
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.annotation.Resource;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,6 +23,7 @@ class UserServiceTest {
     private UserMapper userMapper;
     @Resource
     private UserService userService;
+
 
     @Test
     public void testAddUser() {
@@ -104,5 +108,15 @@ class UserServiceTest {
         checkPassword = "12345678";
         resultid = userService.userRegister(userAccount, userPassword, checkPassword,comment);
         Assertions.assertTrue(resultid > 0);
+    }
+
+    /**
+     * 根据标签查询用户
+     */
+    @Test
+    public void testSearchUserByTags(){
+        List<String> userList = Arrays.asList("java","python");
+        List<User> result = userService.searchUsersByTags(userList);
+        Assert.assertNotNull(result);
     }
 }
