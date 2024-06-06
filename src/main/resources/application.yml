@@ -1,6 +1,6 @@
 spring:
   application:
-    name: userCenterManage-back
+    name: findPartner-backend
   # DataSource Config
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

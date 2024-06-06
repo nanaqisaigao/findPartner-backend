@@ -3,9 +3,9 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example</groupId>
-    <artifactId>useCenterManage-back</artifactId>
+    <artifactId>findPartner-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>useCenterManage-back</name>
+    <name>findPartner-backend</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>1.8</java.version>
@@ -165,7 +165,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <mainClass>com.example.useCenterManageback.UseCenterManageBackApplication</mainClass>
+                    <mainClass>com.example.findPartnerbackend.findPartnerBackendApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

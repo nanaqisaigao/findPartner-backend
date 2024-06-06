@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d280794a-cea4-4dea-a05d-771c80f20b1c" name="Changes" comment="打包完成">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/mybatisx/templates.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/UseCenterManageBackApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/UseCenterManageBackApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/common/BaseResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/common/BaseResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/common/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/common/ErrorCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/common/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/common/RedisConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/common/ResultUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/common/ResultUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/constant/UserConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/constant/UserConstant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/exception/BusinessException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/exception/BusinessException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/exception/GlobalHttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/exception/GlobalHttpHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/model/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/model/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/model/request/UserLoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/model/request/UserLoginRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/model/request/UserRegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/model/request/UserRegisterRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/useCenterManageback/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/useCenterManageback/SampleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/useCenterManageback/SampleTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/useCenterManageback/UseCenterManageBackApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/useCenterManageback/UseCenterManageBackApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/useCenterManageback/service/RedisTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/useCenterManageback/service/RedisTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/useCenterManageback/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/useCenterManageback/service/UserServiceTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;nanaqisaigao&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/nanaqisaigao/useCenterManage-back.git&quot;,
+    &quot;accountId&quot;: &quot;0c32171a-e68d-48ff-ad1b-58d00537d3c4&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://C:/Program Files/Java/jdk1.8.0_333/src.zip!/java/util/regex/Matcher.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PROJECT_DIR$/../../../maven/repository/com/baomidou/mybatis-plus-annotation/3.5.2/mybatis-plus-annotation-3.5.2.jar!/com/baomidou/mybatisplus/annotation/TableField.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PROJECT_DIR$/../../../maven/repository/com/baomidou/mybatis-plus-core/3.5.2/mybatis-plus-core-3.5.2.jar!/com/baomidou/mybatisplus/core/mapper/BaseMapper.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PROJECT_DIR$/../../../maven/repository/com/baomidou/mybatis-plus-extension/3.5.2/mybatis-plus-extension-3.5.2.jar!/com/baomidou/mybatisplus/extension/service/IService.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PROJECT_DIR$/../../../maven/repository/com/baomidou/mybatis-plus-extension/3.5.2/mybatis-plus-extension-3.5.2.jar!/com/baomidou/mybatisplus/extension/service/impl/ServiceImpl.class" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="HttpClientSelectedEnvironments">
+    <file url="file://$USER_HOME$/AppData/Local/Temp/whats-new-dir/whats-new.http" environment="test" />
+    <file url="jar://$APPLICATION_HOME_DIR$/plugins/restClient/lib/restClient.jar!/com/intellij/ws/rest/client/requests/collection/post-requests.http" environment="test" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\maven\repository" />
+        <option name="userSettingsFile" value="D:\maven\repository\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2gpHVkuP78xj0suOO1MG10OCvl8" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;HTTP Request.All in rest-api_1.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.rest-api_1 | #1.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.rest-api_1 | #2.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.rest-api_1 | #3.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RedisTest.test.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RedisTest.testString.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SampleTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SampleTest.testSelect.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTest.testAddUser.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTest.userRegister.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.useCenterManage-back [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.useCenterManage-back [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.useCenterManage-back [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.useCenterManage-back [package].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.UseCenterManageBackApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/project/GitHub/findPartner-backend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.29655173&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;database.query.execution&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.example.useCenterManageback.service" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.useCenterManageback.model.request" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.RedisTest.test">
+    <configuration name="rest-api_1 | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api_1.http" requestIdentifier="#1" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="RedisTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="findPartner-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.findPartnerbackend.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.useCenterManageback.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.useCenterManageback.service.RedisTest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RedisTest.testString" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="findPartner-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.findPartnerbackend.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.useCenterManageback.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.useCenterManageback.service.RedisTest" />
+      <option name="METHOD_NAME" value="testString" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest.userRegister" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="findPartner-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.findPartnerbackend.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.useCenterManageback.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.useCenterManageback.service.UserServiceTest" />
+      <option name="METHOD_NAME" value="userRegister" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UseCenterManageBackApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="findPartner-backend" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.useCenterManageback.UseCenterManageBackApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.useCenterManageback.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="findPartnerBackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="findPartner-backend" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.findPartnerbackend.findPartnerBackendApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.RedisTest.test" />
+        <item itemvalue="JUnit.RedisTest.testString" />
+        <item itemvalue="Spring Boot.UseCenterManageBackApplication" />
+        <item itemvalue="JUnit.UserServiceTest.userRegister" />
+        <item itemvalue="HTTP Request.rest-api_1 | #1" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d280794a-cea4-4dea-a05d-771c80f20b1c" name="Changes" comment="" />
+      <created>1716387625225</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1716387625225</updated>
+      <workItem from="1716387626355" duration="646000" />
+      <workItem from="1716475355742" duration="2019000" />
+      <workItem from="1716477468398" duration="1530000" />
+      <workItem from="1716479011173" duration="296000" />
+      <workItem from="1716479423675" duration="12763000" />
+      <workItem from="1716535158923" duration="22934000" />
+      <workItem from="1716640212990" duration="240000" />
+      <workItem from="1716640469982" duration="24519000" />
+      <workItem from="1716802181385" duration="5452000" />
+      <workItem from="1716874702972" duration="17412000" />
+      <workItem from="1716977953438" duration="8858000" />
+      <workItem from="1717207363724" duration="27023000" />
+      <workItem from="1717396062966" duration="22664000" />
+      <workItem from="1717571994105" duration="749000" />
+      <workItem from="1717573367625" duration="17265000" />
+      <workItem from="1717661621856" duration="549000" />
+    </task>
+    <task id="LOCAL-00001" summary="登录接口写完">
+      <option name="closed" value="true" />
+      <created>1716636006789</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1716636006789</updated>
+    </task>
+    <task id="LOCAL-00002" summary="删除接口有code 400的bug">
+      <option name="closed" value="true" />
+      <created>1716651127928</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1716651127929</updated>
+    </task>
+    <task id="LOCAL-00003" summary="增加了/api，迎合前端跨域请求">
+      <option name="closed" value="true" />
+      <created>1716802207168</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1716802207168</updated>
+    </task>
+    <task id="LOCAL-00004" summary="注册增加了可以添加留言，基础功能已经实现完成">
+      <option name="closed" value="true" />
+      <created>1716992375443</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716992375443</updated>
+    </task>
+    <task id="LOCAL-00005" summary="增加了统一的返回值，全局异常统一抛出，异常全局处理（设定了前端显示的异常值）">
+      <option name="closed" value="true" />
+      <created>1717223807717</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1717223807717</updated>
+    </task>
+    <task id="LOCAL-00006" summary="打包完成">
+      <option name="closed" value="true" />
+      <created>1717414790209</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1717414790210</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="注册改了一下" />
+    <MESSAGE value="登录接口写完" />
+    <MESSAGE value="删除接口有code 400的bug" />
+    <MESSAGE value="增加了/api，迎合前端跨域请求" />
+    <MESSAGE value="注册增加了可以添加留言，基础功能已经实现完成" />
+    <MESSAGE value="增加了统一的返回值，全局异常统一抛出，异常全局处理（设定了前端显示的异常值）" />
+    <MESSAGE value="打包完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="打包完成" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
