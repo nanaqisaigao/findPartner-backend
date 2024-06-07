@@ -4,9 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.findPartnerbackend.common.ErrorCode;
 import com.example.findPartnerbackend.exception.BusinessException;
+import com.example.findPartnerbackend.mapper.UserMapper;
 import com.example.findPartnerbackend.model.domain.User;
 import com.example.findPartnerbackend.service.UserService;
-import com.example.findPartnerbackend.mapper.UserMapper;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -180,15 +183,45 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         Optional<List<String>> optional = Optional.ofNullable(tagNameList);
         if (!optional.isPresent())
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "传入标签为空");
-        //like '%java%' and '%python%'
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        for (String tagName : tagNameList) {
-            queryWrapper = queryWrapper.like("tags", tagName);
-        }
-        List<User> userList = userMapper.selectList(queryWrapper);
-        return userList.stream().map(this::getSafetyUser).collect(Collectors.toList());
-    }
 
+        /**
+         * 方法一：
+         * 从数据库查询
+         */
+        //like '%java%' and '%python%'
+        QueryWrapper<User> queryWrapper1 = new QueryWrapper<>();
+        //去掉第一次数据库连接额度时间
+        userMapper.selectCount(queryWrapper1);
+        long startTime1 = System.currentTimeMillis();
+        for (String tagName : tagNameList) {
+            queryWrapper1 = queryWrapper1.like("tags", tagName);
+        }
+        List<User> userList1 = userMapper.selectList(queryWrapper1);
+//         return userList.stream().map(this::getSafetyUser).collect(Collectors.toList());
+        log.info("从数据库查询sql query time = "+(System.currentTimeMillis()-startTime1));
+
+        /**
+         * 方法二：
+         * 从内存查询
+         */
+        long startTime = System.currentTimeMillis();
+        //1.先查询所有用户
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        List<User> userList = userMapper.selectList(queryWrapper);
+        Gson gson = new Gson();
+        //2.在内存中判断是否包含要求的标签
+        List<User> resultUserList = userList.stream().filter(user->Optional.ofNullable(user.getTags()).isPresent()).filter(user->{
+             String tagsStr = user.getTags();
+             Set<String> tempTagNameSet = gson.fromJson(tagsStr, new TypeToken<Set<String>>(){}.getType() );
+             for (String tagName:tagNameList){
+                 if(tempTagNameSet.contains(tagName))
+                     return false;
+             }
+            return true;
+         }).map(this::getSafetyUser).collect(Collectors.toList());
+        log.info("主要从内存查询sql query time = "+(System.currentTimeMillis()-startTime));
+        return resultUserList;
+    }
 }
 
 
