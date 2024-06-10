@@ -1,6 +1,11 @@
 spring:
   application:
     name: findPartner-backend
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  profiles:
+    active: dev
   # DataSource Config
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

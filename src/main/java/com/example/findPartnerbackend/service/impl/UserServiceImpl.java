@@ -184,10 +184,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         if (!optional.isPresent())
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "传入标签为空");
 
-        /**
+/*
+        */
+/**
          * 方法一：
          * 从数据库查询
-         */
+         *//*
+
         //like '%java%' and '%python%'
         QueryWrapper<User> queryWrapper1 = new QueryWrapper<>();
         //去掉第一次数据库连接额度时间
@@ -199,6 +202,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         List<User> userList1 = userMapper.selectList(queryWrapper1);
 //         return userList.stream().map(this::getSafetyUser).collect(Collectors.toList());
         log.info("从数据库查询sql query time = "+(System.currentTimeMillis()-startTime1));
+*/
 
         /**
          * 方法二：
