@@ -9,6 +9,9 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 
 import java.net.UnknownHostException;
 
+/**
+ * redis练习的时候写的，跟项目没什么关系
+ */
 @Configuration
 public class RedisConfig {
     @Bean

@@ -26,6 +26,9 @@ public class ResultUtils {
     public static BaseResponse error(ErrorCode errorCode){
         return  new BaseResponse<>(errorCode);
     }
+    public static BaseResponse error(ErrorCode errorCode,String description){
+        return  new BaseResponse<>(errorCode.getCode(),errorCode.getMessage(),description);
+    }
 
     public static BaseResponse error(ErrorCode errorCode,String message,String description){
         return  new BaseResponse<>(errorCode.getCode(),message,description);

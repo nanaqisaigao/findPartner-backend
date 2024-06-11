@@ -10,6 +10,7 @@ import com.example.findPartnerbackend.model.domain.User;
 import com.example.findPartnerbackend.model.request.UserLoginRequest;
 import com.example.findPartnerbackend.model.request.UserRegisterRequest;
 import com.example.findPartnerbackend.service.UserService;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,7 @@ import static com.example.findPartnerbackend.constant.UserConstant.ADMIN_ROLE;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin
 public class UserController {
 
     @Resource
@@ -120,6 +122,15 @@ public class UserController {
         }
         Boolean result = userService.removeById(id);
         return ResultUtils.success(result);
+    }
+
+    @GetMapping("/search/tags")
+    public BaseResponse<List<User>> searchUsersByTags(@RequestParam(required = false) List<String> tagNameList){
+        if(CollectionUtils.isEmpty(tagNameList)){
+            throw new BusinessException(ErrorCode.NUll_ERROR,"标签不能为空");
+        }
+        List<User> users = userService.searchUsersByTags(tagNameList);
+        return ResultUtils.success(users);
     }
 
     /**

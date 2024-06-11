@@ -219,9 +219,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
              Set<String> tempTagNameSet = gson.fromJson(tagsStr, new TypeToken<Set<String>>(){}.getType() );
              for (String tagName:tagNameList){
                  if(tempTagNameSet.contains(tagName))
-                     return false;
+                     return true;
              }
-            return true;
+            return false;
          }).map(this::getSafetyUser).collect(Collectors.toList());
         log.info("主要从内存查询sql query time = "+(System.currentTimeMillis()-startTime));
         return resultUserList;

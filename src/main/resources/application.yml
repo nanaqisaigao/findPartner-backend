@@ -15,6 +15,7 @@ spring:
   #Session失效时间
   session:
     timeout: 86400
+    store-type: redis
   redis:
    host: 127.0.0.1
    port: 6379
