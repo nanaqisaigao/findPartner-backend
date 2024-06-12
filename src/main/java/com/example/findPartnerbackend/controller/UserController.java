@@ -146,6 +146,13 @@ public class UserController {
         List<User> users = userService.searchUsersByTags(tagNameList);
         return ResultUtils.success(users);
     }
+    @GetMapping("recommend")
+    public BaseResponse<List<User>> recommendUsers(){
+       QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        List<User> usersList = userService.list(queryWrapper);
+        List<User> list = usersList.stream().map(user -> userService.getSafetyUser(user)).collect(Collectors.toList());
+        return ResultUtils.success(list);
+    }
 
     /**
      * 是否为管理员
