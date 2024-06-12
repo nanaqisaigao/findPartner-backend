@@ -21,13 +21,14 @@ import javax.servlet.http.HttpServletRequest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.example.findPartnerbackend.constant.UserConstant.ADMIN_ROLE;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin
+@CrossOrigin(origins = {"http://127.0.0.1:5173"}, allowCredentials = "true")
 public class UserController {
 
     @Resource
@@ -95,8 +96,8 @@ public class UserController {
     @GetMapping("/search")
     public BaseResponse<List<User>> searchUser(String username, HttpServletRequest request) {
         //仅管理员可以查询
-        if(isAdmin(request)==false){
-            return ResultUtils.success(new ArrayList<>());//cccccccccccccc
+        if(!userService.isAdmin(request)){
+            return ResultUtils.success(new ArrayList<>());
         }
 
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
@@ -114,13 +115,26 @@ public class UserController {
     @PostMapping("/delete")
     public BaseResponse<Boolean> deleteUser(@RequestBody long id,HttpServletRequest request) {
         //仅管理员可以查询
-        if(isAdmin(request)==false){
+        if(!userService.isAdmin(request)){
             throw new BusinessException(ErrorCode.NO_AUTH,"当前用户没有权限");
         }
         if (id <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR,"不存在此用户");
         }
         Boolean result = userService.removeById(id);
+        return ResultUtils.success(result);
+    }
+
+    @PostMapping("/update")
+    public BaseResponse<Integer> updateUser(@RequestBody User user,HttpServletRequest request){
+        //1.校验参数是否为空
+        if(!Optional.ofNullable(user).isPresent())
+            throw new BusinessException(ErrorCode.PARAMS_ERROR,"空对象出现");
+        User loginUser = userService.getLoginUser(request);
+
+        //2.校验权限
+        //3.触发更新
+        Integer result = userService.updateUser(user,loginUser);
         return ResultUtils.success(result);
     }
 
@@ -138,14 +152,6 @@ public class UserController {
      * @param request
      * @return
      */
-    private boolean isAdmin(HttpServletRequest request){
-        Object userObject = request.getSession().getAttribute(UserConstant.USER_LOGIN_STATE);
-        User user = (User) userObject;
-        if (user == null || user.getUserRole() != ADMIN_ROLE){
-            return false;
-        }
-        return true;
-    }
 
 
 

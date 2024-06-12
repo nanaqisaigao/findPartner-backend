@@ -3,6 +3,7 @@ package com.example.findPartnerbackend.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.findPartnerbackend.common.ErrorCode;
+import com.example.findPartnerbackend.constant.UserConstant;
 import com.example.findPartnerbackend.exception.BusinessException;
 import com.example.findPartnerbackend.mapper.UserMapper;
 import com.example.findPartnerbackend.model.domain.User;
@@ -25,6 +26,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static com.example.findPartnerbackend.constant.UserConstant.ADMIN_ROLE;
 import static com.example.findPartnerbackend.constant.UserConstant.USER_LOGIN_STATE;
 import static com.sun.activation.registries.LogSupport.log;
 
@@ -184,12 +186,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         if (!optional.isPresent())
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "传入标签为空");
 
-/*
-        */
+        /*
+         */
 /**
-         * 方法一：
-         * 从数据库查询
-         *//*
+ * 方法一：
+ * 从数据库查询
+ *//*
 
         //like '%java%' and '%python%'
         QueryWrapper<User> queryWrapper1 = new QueryWrapper<>();
@@ -214,18 +216,78 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         List<User> userList = userMapper.selectList(queryWrapper);
         Gson gson = new Gson();
         //2.在内存中判断是否包含要求的标签
-        List<User> resultUserList = userList.stream().filter(user->Optional.ofNullable(user.getTags()).isPresent()).filter(user->{
-             String tagsStr = user.getTags();
-             Set<String> tempTagNameSet = gson.fromJson(tagsStr, new TypeToken<Set<String>>(){}.getType() );
-             for (String tagName:tagNameList){
-                 if(tempTagNameSet.contains(tagName))
-                     return true;
-             }
+        List<User> resultUserList = userList.stream().filter(user -> Optional.ofNullable(user.getTags()).isPresent()).filter(user -> {
+            String tagsStr = user.getTags();
+            Set<String> tempTagNameSet = gson.fromJson(tagsStr, new TypeToken<Set<String>>() {
+            }.getType());
+            for (String tagName : tagNameList) {
+                if (tempTagNameSet.contains(tagName))
+                    return true;
+            }
             return false;
-         }).map(this::getSafetyUser).collect(Collectors.toList());
-        log.info("主要从内存查询sql query time = "+(System.currentTimeMillis()-startTime));
+        }).map(this::getSafetyUser).collect(Collectors.toList());
+        log.info("主要从内存查询sql query time = " + (System.currentTimeMillis() - startTime));
         return resultUserList;
     }
+
+    @Override
+    public int updateUser(User user, User loginUser) {
+        long userId = user.getId();
+        if (userId <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "用户id不正确");
+        }
+        //管理员可以更新所有用户，不是管理员，只允许更新自己的
+        if (!isAdmin(loginUser) && userId != loginUser.getId()) {
+            throw new BusinessException(ErrorCode.NO_AUTH, "无权限更新");
+        }
+        User oldUser = userMapper.selectById(userId);
+        if (oldUser == null) {
+            throw new BusinessException(ErrorCode.NUll_ERROR, "要修改的用户不存在");
+        }
+        return userMapper.updateById(user);
+
+    }
+
+    /**
+     * 获取当前登录的用户信息
+     *
+     * @param request
+     * @return
+     */
+    @Override
+    public User getLoginUser(HttpServletRequest request) {
+        if (!Optional.ofNullable(request).isPresent())
+            return null;
+        Object currentLoginUser = request.getSession().getAttribute(USER_LOGIN_STATE);
+        if (!Optional.ofNullable(currentLoginUser).isPresent())
+            throw new BusinessException(ErrorCode.NUll_ERROR, "当前未登录");
+        return (User) currentLoginUser;
+    }
+
+    /**
+     * 判断是否为管理员
+     *
+     * @param request
+     * @return
+     */
+    @Override
+    public boolean isAdmin(HttpServletRequest request) {
+        Object userObject = request.getSession().getAttribute(UserConstant.USER_LOGIN_STATE);
+        User user = (User) userObject;
+        if (user == null || user.getUserRole() != ADMIN_ROLE) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean isAdmin(User user) {
+        if (user == null || user.getUserRole() != ADMIN_ROLE) {
+            return false;
+        }
+        return true;
+    }
+
 }
 
 
