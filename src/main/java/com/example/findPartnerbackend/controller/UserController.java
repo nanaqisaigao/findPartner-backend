@@ -13,9 +13,12 @@ import com.example.findPartnerbackend.model.domain.User;
 import com.example.findPartnerbackend.model.request.UserLoginRequest;
 import com.example.findPartnerbackend.model.request.UserRegisterRequest;
 import com.example.findPartnerbackend.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.View;
 
@@ -25,6 +28,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import static com.example.findPartnerbackend.constant.UserConstant.ADMIN_ROLE;
@@ -32,12 +36,14 @@ import static com.example.findPartnerbackend.constant.UserConstant.ADMIN_ROLE;
 @RestController
 @RequestMapping("/user")
 @CrossOrigin(origins = {"http://127.0.0.1:5173"}, allowCredentials = "true")
+@Slf4j
 public class UserController {
 
     @Resource
     private UserService userService;
-    @Autowired
-    private View error;
+
+    @Resource
+    private RedisTemplate<String,Object> redisTemplate;
 
     @PostMapping("/register")
     public BaseResponse<Long> userRegister(@RequestBody UserRegisterRequest userRegisterRequest) throws NoSuchAlgorithmException {
@@ -149,22 +155,40 @@ public class UserController {
         List<User> users = userService.searchUsersByTags(tagNameList);
         return ResultUtils.success(users);
     }
+/*  不使用的用户推荐
     @GetMapping("recommend")//pageSize每页几条，pageNum共几页
-    public BaseResponse<Page<User>> recommendUsers(long pageSize,long pageNum){
+    public BaseResponse<Page<User>> recommendUsers(long pageSize,long pageNum,HttpServletRequest request){
        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
 //        List<User> usersList = userService.list(queryWrapper);
         //分页
-        Page<User> usersList = userService.page(new Page<>(pageNum,pageSize),queryWrapper);
+        Page<User> usersPageList = userService.page(new Page<>(pageNum,pageSize),queryWrapper);
 //        List<User> list = usersList.stream().map(user -> userService.getSafetyUser(user)).collect(Collectors.toList());
-        return ResultUtils.success(usersList);
+        return ResultUtils.success(usersPageList);
+    }   */
+    //用户推荐使用缓存的版本
+    @GetMapping("recommend")//pageSize每页几条，pageNum共几页
+    public BaseResponse<Page<User>> recommendUsers(long pageSize,long pageNum,HttpServletRequest request){
+        ValueOperations<String,Object> valueOperations = redisTemplate.opsForValue();
+        //获取当前用户
+        User loginUser = userService.getLoginUser(request);
+        //设置存入的键
+        String redisKey = String.format("findPartner:user:recommend:%s",loginUser.getId());
+        //如果缓存中有，直接读缓存
+        Page<User> userPage = (Page<User>) valueOperations.get(redisKey);
+        if(userPage!=null){
+            return ResultUtils.success(userPage);
+        }
+        //如果无缓存，从数据库查询
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        Page<User> usersPageList = userService.page(new Page<>(pageNum,pageSize),queryWrapper);
+        //写入缓存
+        try {
+            valueOperations.set(redisKey, usersPageList,100000, TimeUnit.MILLISECONDS);
+        }catch (Exception e){
+            log.error("redis set key error",e);
+        }
+        return ResultUtils.success(usersPageList);
     }
-
-    /**
-     * 是否为管理员
-     * @param request
-     * @return
-     */
-
 
 
 
