@@ -1,3 +1,4 @@
+/*
 package com.example.findPartnerbackend.once;
 
 import java.nio.charset.StandardCharsets;
@@ -29,9 +30,11 @@ public class insertUsers {
     //计时
     StopWatch stopWatch = new StopWatch();
 
-    /**
+    */
+/**
      * 批量插入用户
-     */
+     *//*
+
     @Transactional
 //    @Scheduled(initialDelay = 3000, fixedRate = Long.MAX_VALUE)
     public void doInsertUsers() {
@@ -100,12 +103,15 @@ public class insertUsers {
             user.setComment(randomUserUseComment);
             user.setTags(tags);
             userList.add(user);
-           /* userMapper.insert(user);
+           */
+/* userMapper.insert(user);
             stopWatch.stop();
-            System.out.println(stopWatch.getTotalTimeMillis());*/
+            System.out.println(stopWatch.getTotalTimeMillis());*//*
+
         }
         userService.saveBatch(userList);
         stopWatch.stop();
         System.out.println(stopWatch.getTotalTimeMillis());
     }
 }
+*/

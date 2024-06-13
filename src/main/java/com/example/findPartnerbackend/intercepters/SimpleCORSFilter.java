@@ -11,7 +11,14 @@ import java.io.IOException;
 @Component
 @Slf4j
 public class SimpleCORSFilter implements Filter {
-
+    /**
+     * 解决前端跨域问题
+     * @param req
+     * @param res
+     * @param chain
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         //log.error("我被注入啦！");

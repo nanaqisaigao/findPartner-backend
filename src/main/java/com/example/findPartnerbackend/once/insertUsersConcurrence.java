@@ -1,3 +1,4 @@
+/*
 package com.example.findPartnerbackend.once;
 
 
@@ -32,9 +33,11 @@ public class insertUsersConcurrence {
     StopWatch stopWatch = new StopWatch();
     //自己建的线程池
     private ExecutorService executorService = new ThreadPoolExecutor(60,1000,10000, TimeUnit.MINUTES,new ArrayBlockingQueue<>(10000));
-    /**
+    */
+/**
      * 批量插入用户
-     */
+     *//*
+
     @Transactional
 //    @Scheduled(initialDelay = 3000, fixedRate = Long.MAX_VALUE)
     public void doInsertUsers() {
@@ -132,3 +135,4 @@ public class insertUsersConcurrence {
         System.out.println(stopWatch.getTotalTimeMillis());
     }
 }
+*/

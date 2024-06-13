@@ -1,6 +1,9 @@
 package com.example.findPartnerbackend.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.findPartnerbackend.common.BaseResponse;
 import com.example.findPartnerbackend.common.ErrorCode;
 import com.example.findPartnerbackend.common.ResultUtils;
@@ -146,12 +149,14 @@ public class UserController {
         List<User> users = userService.searchUsersByTags(tagNameList);
         return ResultUtils.success(users);
     }
-    @GetMapping("recommend")
-    public BaseResponse<List<User>> recommendUsers(){
+    @GetMapping("recommend")//pageSize每页几条，pageNum共几页
+    public BaseResponse<Page<User>> recommendUsers(long pageSize,long pageNum){
        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        List<User> usersList = userService.list(queryWrapper);
-        List<User> list = usersList.stream().map(user -> userService.getSafetyUser(user)).collect(Collectors.toList());
-        return ResultUtils.success(list);
+//        List<User> usersList = userService.list(queryWrapper);
+        //分页
+        Page<User> usersList = userService.page(new Page<>(pageNum,pageSize),queryWrapper);
+//        List<User> list = usersList.stream().map(user -> userService.getSafetyUser(user)).collect(Collectors.toList());
+        return ResultUtils.success(usersList);
     }
 
     /**
