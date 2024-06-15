@@ -2,6 +2,7 @@ package com.example.findPartnerbackend.service;
 
 import com.example.findPartnerbackend.model.domain.Team;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.findPartnerbackend.model.domain.User;
 
 /**
 * @author 28044
@@ -9,5 +10,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2024-06-15 11:09:11
 */
 public interface TeamService extends IService<Team> {
-
+    /**创建队伍
+     *
+     * @param team
+     * @return
+     */
+    long addTeam(Team team, User loginUser);
 }

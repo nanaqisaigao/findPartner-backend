@@ -5,9 +5,11 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.findPartnerbackend.common.BaseResponse;
 import com.example.findPartnerbackend.common.ErrorCode;
 import com.example.findPartnerbackend.common.ResultUtils;
+import com.example.findPartnerbackend.dto.TeamAddRequest;
 import com.example.findPartnerbackend.dto.TeamQuery;
 import com.example.findPartnerbackend.exception.BusinessException;
 import com.example.findPartnerbackend.model.domain.Team;
+import com.example.findPartnerbackend.model.domain.User;
 import com.example.findPartnerbackend.service.TeamService;
 import com.example.findPartnerbackend.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +17,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
@@ -30,19 +33,30 @@ public class TeamController {
     @Resource
     private TeamService teamService;
 
+
     /**
      * 增
      */
     @PostMapping("/add")
-    public BaseResponse<Long> addTeam(@RequestBody Team team) {
-        if (team == null) {
+    public BaseResponse<Long> addTeam(@RequestBody TeamAddRequest teamAddRequest, HttpServletRequest request) {
+        if (teamAddRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        boolean save = teamService.save(team);
-        if (!save) {
-            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "添加失败");
+        User loginUser = userService.getLoginUser(request);
+        Team team = new Team();
+        try {
+            BeanUtils.copyProperties(team,teamAddRequest);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        } catch (InvocationTargetException e) {
+            throw new RuntimeException(e);
         }
-        return ResultUtils.success(team.getId());
+
+        long teamId = teamService.addTeam(team,loginUser);
+
+
+
+        return ResultUtils.success(teamId);
     }
 
     /**
@@ -134,5 +148,7 @@ public class TeamController {
         Page<Team> teamPage = teamService.page(page,queryWrapper);
         return ResultUtils.success(teamPage);
     }
+
+
 
 }
