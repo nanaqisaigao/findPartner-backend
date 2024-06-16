@@ -3,6 +3,10 @@ package com.example.findPartnerbackend.service;
 import com.example.findPartnerbackend.model.domain.Team;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.findPartnerbackend.model.domain.User;
+import com.example.findPartnerbackend.model.dto.TeamQuery;
+import com.example.findPartnerbackend.model.vo.TeamUserVo;
+
+import java.util.List;
 
 /**
 * @author 28044
@@ -16,4 +20,11 @@ public interface TeamService extends IService<Team> {
      * @return
      */
     long addTeam(Team team, User loginUser);
+
+    /**
+     * 搜索队伍
+     * @param teamQuery
+     * @return
+     */
+    List<TeamUserVo> listTeams(TeamQuery teamQuery,boolean isAdmin);
 }

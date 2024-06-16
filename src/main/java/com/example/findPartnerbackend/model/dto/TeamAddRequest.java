@@ -1,18 +1,15 @@
-package com.example.findPartnerbackend.dto;
+package com.example.findPartnerbackend.model.dto;
 
-import com.example.findPartnerbackend.common.PageRequest;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.Date;
+
 /**
- * 队伍查询封装类
+ * 增加队伍的封装类
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class TeamQuery extends PageRequest {
-    /**
-     *
-     */
+public class TeamAddRequest {
     private Long id;
 
     /**
@@ -24,10 +21,17 @@ public class TeamQuery extends PageRequest {
      * 描述
      */
     private String description;
+
     /**
      * 最大人数
      */
-    private Integer maxNum;
+    private Integer maxnum;
+
+    /**
+     * 过期时间
+     */
+    private Date expiretime;
+
     /**
      * 用户id
      */
@@ -38,6 +42,9 @@ public class TeamQuery extends PageRequest {
      */
     private Integer status;
 
-
+    /**
+     * 用户密码
+     */
+    private String password;
 
 }

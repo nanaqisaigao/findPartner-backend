@@ -5,11 +5,12 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.findPartnerbackend.common.BaseResponse;
 import com.example.findPartnerbackend.common.ErrorCode;
 import com.example.findPartnerbackend.common.ResultUtils;
-import com.example.findPartnerbackend.dto.TeamAddRequest;
-import com.example.findPartnerbackend.dto.TeamQuery;
+import com.example.findPartnerbackend.model.dto.TeamAddRequest;
+import com.example.findPartnerbackend.model.dto.TeamQuery;
 import com.example.findPartnerbackend.exception.BusinessException;
 import com.example.findPartnerbackend.model.domain.Team;
 import com.example.findPartnerbackend.model.domain.User;
+import com.example.findPartnerbackend.model.vo.TeamUserVo;
 import com.example.findPartnerbackend.service.TeamService;
 import com.example.findPartnerbackend.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -108,22 +109,11 @@ public class TeamController {
      * 查所有队伍
      */
     @GetMapping("/list")
-    public BaseResponse<List<Team>> listTeams(TeamQuery teamQuery) {
+    public BaseResponse<List<TeamUserVo>> listTeams(TeamQuery teamQuery,HttpServletRequest request) {
         if (teamQuery == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        Team team = new Team();
-        try {
-            // 复制属性
-            BeanUtils.copyProperties(team,teamQuery);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
-        }
-
-        QueryWrapper<Team> queryWrapper = new QueryWrapper<>(team);
-        List<Team> teamList = teamService.list(queryWrapper);
+        List<TeamUserVo> teamList = teamService.listTeams(teamQuery, userService.isAdmin(request));
         return ResultUtils.success(teamList);
     }
     /**
