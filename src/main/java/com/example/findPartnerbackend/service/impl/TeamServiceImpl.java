@@ -9,6 +9,7 @@ import com.example.findPartnerbackend.model.domain.User;
 import com.example.findPartnerbackend.model.domain.UserTeam;
 import com.example.findPartnerbackend.model.dto.TeamQuery;
 import com.example.findPartnerbackend.model.enums.TeamStatusEnum;
+import com.example.findPartnerbackend.model.request.TeamUpdateRequest;
 import com.example.findPartnerbackend.model.vo.TeamUserVo;
 import com.example.findPartnerbackend.model.vo.UserVo;
 import com.example.findPartnerbackend.service.TeamService;
@@ -18,6 +19,7 @@ import com.example.findPartnerbackend.service.UserTeamService;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,6 +41,8 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
 
     @Resource
     private UserService userService;
+
+
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -197,6 +201,43 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
         //join user u on ut.userId = u.id
 
         return teamUserVosList;
+    }
+
+    @Override
+    public boolean updateTeam(TeamUpdateRequest teamUpdateRequest,User loginUser) {
+        if(teamUpdateRequest == null){
+            throw new BusinessException(ErrorCode.NUll_ERROR);
+        }
+        Long id = teamUpdateRequest.getId();
+        if(id == null || id <= 0){
+            throw new BusinessException(ErrorCode.PARAMS_ERROR,"请求队伍id不存在");
+        }
+        Team oldTeam = this.getById(id);
+        if(oldTeam == null){
+            throw new BusinessException(ErrorCode.NUll_ERROR);
+        }
+        TeamStatusEnum statusEnum = TeamStatusEnum.getEnumByValue(teamUpdateRequest.getStatus());
+        if(statusEnum.equals(TeamStatusEnum.SECRET)){
+            if(StringUtils.isBlank(teamUpdateRequest.getPassword())){
+                throw new BusinessException(ErrorCode.PARAMS_ERROR,"加密队伍不能无密码");
+            }
+        }
+        //只有管理员和队伍创建者才能修改
+        if(!Objects.equals(oldTeam.getUserId(), loginUser.getId()) && !userService.isAdmin(loginUser)){
+            throw  new BusinessException(ErrorCode.NO_AUTH);
+        }
+        Team updateTeam = new Team();
+        try {
+            //请求改成Team类型来update
+            BeanUtils.copyProperties(updateTeam,teamUpdateRequest);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        } catch (InvocationTargetException e) {
+            throw new RuntimeException(e);
+        }
+        return this.updateById(updateTeam);
+
+
     }
 }
 

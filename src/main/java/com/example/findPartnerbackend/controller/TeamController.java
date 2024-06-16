@@ -10,6 +10,7 @@ import com.example.findPartnerbackend.model.dto.TeamQuery;
 import com.example.findPartnerbackend.exception.BusinessException;
 import com.example.findPartnerbackend.model.domain.Team;
 import com.example.findPartnerbackend.model.domain.User;
+import com.example.findPartnerbackend.model.request.TeamUpdateRequest;
 import com.example.findPartnerbackend.model.vo.TeamUserVo;
 import com.example.findPartnerbackend.service.TeamService;
 import com.example.findPartnerbackend.service.UserService;
@@ -79,11 +80,11 @@ public class TeamController {
      * 改
      */
     @PostMapping("/update")
-    public BaseResponse<Boolean> updateTeam(@RequestBody Team team) {
-        if (team == null) {
+    public BaseResponse<Boolean> updateTeam(@RequestBody TeamUpdateRequest teamUpdateRequest,HttpServletRequest request) {
+        if (teamUpdateRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        boolean result = teamService.updateById(team);
+        boolean result = teamService.updateTeam(teamUpdateRequest,userService.getLoginUser(request));
         if (!result) {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "更新失败");
         }
