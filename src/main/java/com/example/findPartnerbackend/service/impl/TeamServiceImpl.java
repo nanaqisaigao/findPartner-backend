@@ -9,6 +9,7 @@ import com.example.findPartnerbackend.model.domain.User;
 import com.example.findPartnerbackend.model.domain.UserTeam;
 import com.example.findPartnerbackend.model.dto.TeamQuery;
 import com.example.findPartnerbackend.model.enums.TeamStatusEnum;
+import com.example.findPartnerbackend.model.request.TeamJoinRequest;
 import com.example.findPartnerbackend.model.request.TeamUpdateRequest;
 import com.example.findPartnerbackend.model.vo.TeamUserVo;
 import com.example.findPartnerbackend.model.vo.UserVo;
@@ -238,6 +239,68 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
         return this.updateById(updateTeam);
 
 
+    }
+
+    @Override
+    public boolean joinTeam(TeamJoinRequest teamJoinRequest, User loginUser) {
+        if(teamJoinRequest == null){
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+
+        //队伍加入相关
+        Long teamId = teamJoinRequest.getTeamId();
+        if(teamId == null || teamId <= 0){
+            throw new BusinessException(ErrorCode.PARAMS_ERROR,"队伍id不合法");
+        }
+        Team team = this.getById(teamId);
+        if(team == null){
+            throw new BusinessException(ErrorCode.PARAMS_ERROR,"队伍不存在");
+        }
+        if(team.getExpiretime()!=null&&team.getExpiretime().before(new Date())){
+            throw new BusinessException(ErrorCode.PARAMS_ERROR,"队伍已过期");
+        }
+
+        Integer status = team.getStatus();
+        TeamStatusEnum teamStatusEnum = TeamStatusEnum.getEnumByValue(status);
+        if(TeamStatusEnum.PRIVATE.equals(teamStatusEnum)){
+            throw new BusinessException(ErrorCode.PARAMS_ERROR,"私密队伍不允许加入");
+        }
+        String passwordRequest = teamJoinRequest.getPassword();
+        String passwordNeed = team.getPassword();
+        if(teamStatusEnum == TeamStatusEnum.SECRET){
+            if(StringUtils.isBlank(passwordRequest)||!passwordNeed.equals(passwordRequest)){
+                throw new BusinessException(ErrorCode.PARAMS_ERROR,"加入加密队伍密码错误");
+            }
+        }
+        //该用户加入队伍的数量
+        Long userId = loginUser.getId();
+        QueryWrapper<UserTeam> userTeamQueryWrapper = new QueryWrapper<>();
+        userTeamQueryWrapper.eq("userId",userId);
+        Long hasJoinNum = userTeamService.count(userTeamQueryWrapper);
+        if(hasJoinNum >= 5){
+            throw new BusinessException(ErrorCode.PARAMS_ERROR,"一个人最多加入和创建5个队伍");
+        }
+        //不能重复加入已加入队伍
+        userTeamQueryWrapper = new QueryWrapper<>();
+        userTeamQueryWrapper.eq("userId",userId);
+        userTeamQueryWrapper.eq("teamId",teamId);
+        Long hasJoinTeam = userTeamService.count(userTeamQueryWrapper);
+        if(hasJoinTeam > 0){
+            throw new BusinessException(ErrorCode.PARAMS_ERROR,"已经加入过这个队伍");
+        }
+
+        //队伍已有的人数
+        long teamHasJoinNum = userTeamService.count(new QueryWrapper<UserTeam>().eq("teamId",teamId));
+        if(teamHasJoinNum >= team.getMaxnum()){
+            throw new BusinessException(ErrorCode.PARAMS_ERROR,"队伍已满");
+        }
+
+        //加入队伍
+        UserTeam userTeam = new UserTeam();
+        userTeam.setUserId(userId);
+        userTeam.setTeamId(teamId);
+        userTeam.setJoinTime(new Date());
+        return userTeamService.save(userTeam);
     }
 }
 

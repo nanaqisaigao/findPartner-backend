@@ -10,6 +10,7 @@ import com.example.findPartnerbackend.model.dto.TeamQuery;
 import com.example.findPartnerbackend.exception.BusinessException;
 import com.example.findPartnerbackend.model.domain.Team;
 import com.example.findPartnerbackend.model.domain.User;
+import com.example.findPartnerbackend.model.request.TeamJoinRequest;
 import com.example.findPartnerbackend.model.request.TeamUpdateRequest;
 import com.example.findPartnerbackend.model.vo.TeamUserVo;
 import com.example.findPartnerbackend.service.TeamService;
@@ -140,6 +141,16 @@ public class TeamController {
         return ResultUtils.success(teamPage);
     }
 
-
+    @PostMapping("/join")
+    public BaseResponse<Boolean> joinTeam(@RequestBody TeamJoinRequest teamJoinRequest, HttpServletRequest request) {
+        if (teamJoinRequest == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        boolean result = teamService.joinTeam(teamJoinRequest, userService.getLoginUser(request));
+        if (!result) {
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "加入队伍失败");
+        }
+        return ResultUtils.success(true);
+    }
 
 }
