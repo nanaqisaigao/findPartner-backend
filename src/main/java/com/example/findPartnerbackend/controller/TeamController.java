@@ -11,6 +11,7 @@ import com.example.findPartnerbackend.exception.BusinessException;
 import com.example.findPartnerbackend.model.domain.Team;
 import com.example.findPartnerbackend.model.domain.User;
 import com.example.findPartnerbackend.model.request.TeamJoinRequest;
+import com.example.findPartnerbackend.model.request.TeamQuitRequest;
 import com.example.findPartnerbackend.model.request.TeamUpdateRequest;
 import com.example.findPartnerbackend.model.vo.TeamUserVo;
 import com.example.findPartnerbackend.service.TeamService;
@@ -39,6 +40,7 @@ public class TeamController {
 
     /**
      * 增
+     * 创建队伍
      */
     @PostMapping("/add")
     public BaseResponse<Long> addTeam(@RequestBody TeamAddRequest teamAddRequest, HttpServletRequest request) {
@@ -54,23 +56,20 @@ public class TeamController {
         } catch (InvocationTargetException e) {
             throw new RuntimeException(e);
         }
-
         long teamId = teamService.addTeam(team,loginUser);
-
-
-
         return ResultUtils.success(teamId);
     }
 
     /**
      * 删
+     * 删除队伍
      */
     @PostMapping("/delete")
-    public BaseResponse<Boolean> deleteTeam(@RequestBody long id) {
+    public BaseResponse<Boolean> deleteTeam(@RequestBody long id,HttpServletRequest request) {
         if (id < 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        boolean result = teamService.removeById(id);
+        boolean result = teamService.deleteTeam(id,userService.getLoginUser(request));
         if (!result) {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "删除失败");
         }
@@ -79,6 +78,7 @@ public class TeamController {
 
     /**
      * 改
+     * 更改队伍信息
      */
     @PostMapping("/update")
     public BaseResponse<Boolean> updateTeam(@RequestBody TeamUpdateRequest teamUpdateRequest,HttpServletRequest request) {
@@ -108,7 +108,8 @@ public class TeamController {
     }
 
     /**
-     * 查所有队伍
+     * 查
+     * 按搜索参数，查询所有符合队伍
      */
     @GetMapping("/list")
     public BaseResponse<List<TeamUserVo>> listTeams(TeamQuery teamQuery,HttpServletRequest request) {
@@ -141,6 +142,12 @@ public class TeamController {
         return ResultUtils.success(teamPage);
     }
 
+    /**
+     * 加入队伍
+     * @param teamJoinRequest
+     * @param request
+     * @return
+     */
     @PostMapping("/join")
     public BaseResponse<Boolean> joinTeam(@RequestBody TeamJoinRequest teamJoinRequest, HttpServletRequest request) {
         if (teamJoinRequest == null) {
@@ -152,5 +159,25 @@ public class TeamController {
         }
         return ResultUtils.success(true);
     }
+
+    /**
+     * 退出队伍
+     * @param teamQuitRequest
+     * @param request
+     * @return
+     */
+    @PostMapping("/quit")
+    public BaseResponse<Boolean> quitTeam(@RequestBody TeamQuitRequest teamQuitRequest, HttpServletRequest request) {
+        if (teamQuitRequest == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        boolean result = teamService.quitTeam(teamQuitRequest, userService.getLoginUser(request));
+        if (!result) {
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "加入队伍失败");
+        }
+        return ResultUtils.success(true);
+    }
+
+
 
 }
