@@ -21,6 +21,7 @@ import com.example.findPartnerbackend.service.UserTeamService;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -204,6 +205,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public boolean updateTeam(TeamUpdateRequest teamUpdateRequest, User loginUser) {
         if (teamUpdateRequest == null) {
             throw new BusinessException(ErrorCode.NUll_ERROR);
@@ -241,20 +243,17 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public boolean joinTeam(TeamJoinRequest teamJoinRequest, User loginUser) {
         if (teamJoinRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-
         //队伍加入相关
         Long teamId = teamJoinRequest.getTeamId();
         if (teamId == null || teamId <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "队伍id不合法");
         }
-        Team team = this.getById(teamId);
-        if (team == null) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR, "队伍不存在");
-        }
+        Team team = this.getTeamById(teamId);
         if (team.getExpiretime() != null && team.getExpiretime().before(new Date())) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "队伍已过期");
         }
@@ -303,18 +302,13 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public boolean quitTeam(TeamQuitRequest teamQuitRequest, User loginUser) {
         if (teamQuitRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         Long teamId = teamQuitRequest.getTeamId();
-        if (teamId == null || teamId <= 0) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR, "队伍id不存在");
-        }
-        Team team = this.getById(teamId);
-        if (team == null) {
-            throw new BusinessException(ErrorCode.NUll_ERROR, "队伍不存在");
-        }
+        Team team = getTeamById(teamId);
         Long userId = loginUser.getId();
         //未加入不能退出
         UserTeam queryUserTeam = new UserTeam();
@@ -362,9 +356,26 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
         return userTeamService.remove(userTeamQueryWrapper);
 }
 
+
+
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public boolean deleteTeam(long id, User loginUser) {
-        return false;
+//         校验队伍是否存在
+        Team team = this.getTeamById(id);
+//         校验你是不是队伍的队长
+        if (!team.getUserId().equals(loginUser.getId())) {
+            throw new BusinessException(ErrorCode.NO_AUTH, "无权限删除");
+        }
+        // 移除所有加入队伍的关联信息
+        QueryWrapper<UserTeam> userTeamQueryWrapper = new QueryWrapper<>();
+        userTeamQueryWrapper.eq("teamId", id);
+        boolean remove = userTeamService.remove(userTeamQueryWrapper);
+        if (!remove) {
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "删除队伍关联信息失败");
+        }
+        //删除队伍
+        return this.removeById(id);
     }
 
 
@@ -378,6 +389,22 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
         QueryWrapper userTeamQueryWrapper = new QueryWrapper<>();
         userTeamQueryWrapper.eq("teamId", teamId);
         return userTeamService.count(userTeamQueryWrapper);
+    }
+
+    /**
+     * 根据id获取队伍信息
+     * @param teamId
+     * @return
+     */
+    public  Team getTeamById(Long teamId) {
+        if (teamId == null || teamId <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "队伍id不存在");
+        }
+        Team team = this.getById(teamId);
+        if (team == null) {
+            throw new BusinessException(ErrorCode.NUll_ERROR, "队伍不存在");
+        }
+        return team;
     }
 }
 
