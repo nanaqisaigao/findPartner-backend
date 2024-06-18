@@ -120,8 +120,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
     }
 
     @Override
-    public List<TeamUserVo> listTeams(TeamQuery teamQuery, boolean isAdmin) {
-
+    public List<TeamUserVo> listTeams(TeamQuery teamQuery, boolean isAdmin,int flag) {
         QueryWrapper<Team> queryWrapper = new QueryWrapper<>();
         //组合查询条件
         if (teamQuery != null) {
@@ -129,6 +128,12 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
             if (id != null && id > 0) {
                 queryWrapper.eq("id", id);
             }
+
+            List<Long> teamIdList = teamQuery.getIdList();
+            if (CollectionUtils.isNotEmpty(teamIdList)) {
+                queryWrapper.in("id", teamIdList);
+            }
+
             String searchText = teamQuery.getSearchText();
             if (StringUtils.isNotBlank(searchText)) {
                 queryWrapper.and(qw -> qw.like("name", searchText).or().like("description", searchText));
@@ -158,8 +163,16 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
             if (!isAdmin && !statusEnum.equals(TeamStatusEnum.PUBLIC)) {
                 throw new BusinessException(ErrorCode.NO_AUTH);
             }
-            queryWrapper.eq("status", statusEnum.getValue());
 
+            if(flag == 0 ){
+                queryWrapper.eq("status", statusEnum.getValue());
+            }else if(flag ==1){
+                List<Integer> statusList = new ArrayList<>();
+                statusList.add(TeamStatusEnum.PUBLIC.getValue());
+                statusList.add(TeamStatusEnum.PRIVATE.getValue());
+                statusList.add(TeamStatusEnum.SECRET.getValue());
+                queryWrapper.in("status",statusList);
+            }
         }
         //不展示已过期队伍
         //expireTime is null or expireTime > now()
@@ -354,8 +367,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
         }
         //删除所有队伍的关系
         return userTeamService.remove(userTeamQueryWrapper);
-}
-
+    }
 
 
     @Override
@@ -381,10 +393,11 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
 
     /**
      * 获取某队伍当前人数
+     *
      * @param teamId
      * @return
      */
-    private Long getTeamUserCountByTeamId(long teamId){
+    private Long getTeamUserCountByTeamId(long teamId) {
         //队伍已有的人数
         QueryWrapper userTeamQueryWrapper = new QueryWrapper<>();
         userTeamQueryWrapper.eq("teamId", teamId);
@@ -393,10 +406,11 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
 
     /**
      * 根据id获取队伍信息
+     *
      * @param teamId
      * @return
      */
-    public  Team getTeamById(Long teamId) {
+    public Team getTeamById(Long teamId) {
         if (teamId == null || teamId <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "队伍id不存在");
         }

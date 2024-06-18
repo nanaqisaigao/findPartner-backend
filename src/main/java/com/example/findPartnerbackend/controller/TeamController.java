@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.findPartnerbackend.common.BaseResponse;
 import com.example.findPartnerbackend.common.ErrorCode;
 import com.example.findPartnerbackend.common.ResultUtils;
+import com.example.findPartnerbackend.model.domain.UserTeam;
 import com.example.findPartnerbackend.model.dto.TeamAddRequest;
 import com.example.findPartnerbackend.model.dto.TeamQuery;
 import com.example.findPartnerbackend.exception.BusinessException;
@@ -16,6 +17,7 @@ import com.example.findPartnerbackend.model.request.TeamUpdateRequest;
 import com.example.findPartnerbackend.model.vo.TeamUserVo;
 import com.example.findPartnerbackend.service.TeamService;
 import com.example.findPartnerbackend.service.UserService;
+import com.example.findPartnerbackend.service.UserTeamService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +26,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/team")
@@ -37,6 +40,8 @@ public class TeamController {
     @Resource
     private TeamService teamService;
 
+    @Resource
+    private UserTeamService userTeamService;
 
     /**
      * 增
@@ -108,7 +113,7 @@ public class TeamController {
     }
 
     /**
-     * 查
+     * 根据参数差队伍列表
      * 按搜索参数，查询所有符合队伍
      */
     @GetMapping("/list")
@@ -116,9 +121,46 @@ public class TeamController {
         if (teamQuery == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        List<TeamUserVo> teamList = teamService.listTeams(teamQuery, userService.isAdmin(request));
+        List<TeamUserVo> teamList = teamService.listTeams(teamQuery, userService.isAdmin(request),0);
         return ResultUtils.success(teamList);
     }
+    /**
+     * 查，获取我创建的队伍
+     * 按搜索参数，查询所有符合队伍
+     */
+    @GetMapping("/list/mycreate")
+    public BaseResponse<List<TeamUserVo>> listMyCreateTeams(TeamQuery teamQuery,HttpServletRequest request) {
+        if (teamQuery == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        User loginUser = userService.getLoginUser(request);
+        teamQuery.setUserId(loginUser.getId());
+        List<TeamUserVo> teamList = teamService.listTeams(teamQuery, true,1);
+        return ResultUtils.success(teamList);
+    }
+
+    /**
+     * 查，获取我加入的队伍
+     * 按搜索参数，查询所有符合队伍
+     */
+    @GetMapping("/list/myjoin")
+    public BaseResponse<List<TeamUserVo>> listMyJoinTeams(TeamQuery teamQuery,HttpServletRequest request) {
+        if (teamQuery == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        User loginUser = userService.getLoginUser(request);
+        //自己在的所有队伍
+        QueryWrapper <UserTeam>queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("userId",loginUser.getId());
+        List<UserTeam> list = userTeamService.list(queryWrapper);
+        List<Long> teamIdList = list.stream().map(UserTeam::getTeamId).collect(Collectors.toList());
+        //自己创建的队伍
+
+        teamQuery.setIdList(teamIdList);
+        List<TeamUserVo> teamList = teamService.listTeams(teamQuery, true,1);
+        return ResultUtils.success(teamList);
+    }
+
     /**
      * 分页查所有队伍
      */
