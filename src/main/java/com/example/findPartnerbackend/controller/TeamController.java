@@ -11,6 +11,7 @@ import com.example.findPartnerbackend.model.dto.TeamQuery;
 import com.example.findPartnerbackend.exception.BusinessException;
 import com.example.findPartnerbackend.model.domain.Team;
 import com.example.findPartnerbackend.model.domain.User;
+import com.example.findPartnerbackend.model.request.DeleteRequest;
 import com.example.findPartnerbackend.model.request.TeamJoinRequest;
 import com.example.findPartnerbackend.model.request.TeamQuitRequest;
 import com.example.findPartnerbackend.model.request.TeamUpdateRequest;
@@ -70,13 +71,32 @@ public class TeamController {
      * 删除队伍
      */
     @PostMapping("/delete")
-    public BaseResponse<Boolean> deleteTeam(@RequestBody long id,HttpServletRequest request) {
-        if (id < 0) {
+    public BaseResponse<Boolean> deleteTeam(@RequestBody DeleteRequest deleteRequest, HttpServletRequest request) {
+        if(deleteRequest == null || deleteRequest.getId() <= 0 ){
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
+        Long id = deleteRequest.getId();
+
         boolean result = teamService.deleteTeam(id,userService.getLoginUser(request));
         if (!result) {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "删除失败");
+        }
+        return ResultUtils.success(true);
+    }
+    /**
+     * 退出队伍
+     * @param teamQuitRequest
+     * @param request
+     * @return
+     */
+    @PostMapping("/quit")
+    public BaseResponse<Boolean> quitTeam(@RequestBody TeamQuitRequest teamQuitRequest, HttpServletRequest request) {
+        if (teamQuitRequest == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        boolean result = teamService.quitTeam(teamQuitRequest, userService.getLoginUser(request));
+        if (!result) {
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "加入队伍失败");
         }
         return ResultUtils.success(true);
     }
@@ -202,23 +222,6 @@ public class TeamController {
         return ResultUtils.success(true);
     }
 
-    /**
-     * 退出队伍
-     * @param teamQuitRequest
-     * @param request
-     * @return
-     */
-    @PostMapping("/quit")
-    public BaseResponse<Boolean> quitTeam(@RequestBody TeamQuitRequest teamQuitRequest, HttpServletRequest request) {
-        if (teamQuitRequest == null) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR);
-        }
-        boolean result = teamService.quitTeam(teamQuitRequest, userService.getLoginUser(request));
-        if (!result) {
-            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "加入队伍失败");
-        }
-        return ResultUtils.success(true);
-    }
 
 
 
