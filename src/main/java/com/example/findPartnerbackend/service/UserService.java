@@ -1,7 +1,9 @@
 package com.example.findPartnerbackend.service;
 
+import com.example.findPartnerbackend.common.BaseResponse;
 import com.example.findPartnerbackend.model.domain.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.findPartnerbackend.model.vo.UserVo;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.NoSuchAlgorithmException;
@@ -58,4 +60,7 @@ public interface UserService extends IService<User> {
     boolean isAdmin(HttpServletRequest request);
 
     boolean isAdmin(User user);
+
+    List<User> matchUsers(long num, User loginUser);
+    List<User> matchUsersReverse(long num, User loginUser);
 }

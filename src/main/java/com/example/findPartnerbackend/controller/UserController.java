@@ -12,6 +12,7 @@ import com.example.findPartnerbackend.exception.BusinessException;
 import com.example.findPartnerbackend.model.domain.User;
 import com.example.findPartnerbackend.model.request.UserLoginRequest;
 import com.example.findPartnerbackend.model.request.UserRegisterRequest;
+import com.example.findPartnerbackend.model.vo.UserVo;
 import com.example.findPartnerbackend.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
@@ -166,7 +167,7 @@ public class UserController {
         return ResultUtils.success(usersPageList);
     }   */
     //用户推荐使用缓存的版本
-    @GetMapping("recommend")//pageSize每页几条，pageNum共几页
+    @GetMapping("/recommend")//pageSize每页几条，pageNum共几页
     public BaseResponse<Page<User>> recommendUsers(long pageSize,long pageNum,HttpServletRequest request){
         ValueOperations<String,Object> valueOperations = redisTemplate.opsForValue();
         //获取当前用户
@@ -190,6 +191,22 @@ public class UserController {
         return ResultUtils.success(usersPageList);
     }
 
+    @GetMapping("/match")
+    public BaseResponse<List<User>> matchUsers(long num, HttpServletRequest request) {
+        if (num <= 0 || num > 20) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        User user = userService.getLoginUser(request);
+        return ResultUtils.success(userService.matchUsers(num, user));
+    }
+    @GetMapping("/match/reverse")
+    public BaseResponse<List<User>> matchUsersReverse(long num, HttpServletRequest request) {
+        if (num <= 0 || num > 20) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        User user = userService.getLoginUser(request);
+        return ResultUtils.success(userService.matchUsersReverse(num, user));
+    }
 
 
 
